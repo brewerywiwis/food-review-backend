@@ -1,6 +1,7 @@
 package rest
 
 import (
+	"github.com/brewerywiwis/food-review-backend/pkg/domain/food"
 	"github.com/gin-gonic/gin"
 )
 
@@ -20,10 +21,9 @@ func (s *GinServer) Run(addr string) error {
 }
 
 // NewServer returns a new Server
-func NewServer() Server {
+func NewServer(foodService food.Service) Server {
 	server := &GinServer{gin.Default()}
-
-	registerRoutes(server)
+	registerRoutes(server, foodService)
 
 	return server
 }
