@@ -1,7 +1,6 @@
 package memory
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/brewerywiwis/food-review-backend/pkg/domain/food"
@@ -35,7 +34,6 @@ func (s *FoodStorage) GetByName(name string) Food {
 
 // Create is used to add a new food record to the memory db
 func (s *FoodStorage) Create(food Food) (Food, error) {
-	fmt.Println(food)
 	if len(s.foods) <= 0 {
 		food.ID = 1
 	} else {
