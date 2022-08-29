@@ -22,12 +22,17 @@ import (
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 
 // @schemes http
+
+// @securityDefinitions.apikey ApiKeyAuth
+// @in header
+// @name Authorization
+// @description the token is used to authenticate and authorize an user
 func main() {
 	foodRepository := memory.FoodStorage{}
 	foodService := food.NewService(&foodRepository)
 	server := rest.NewServer(foodService)
 
-	// prepare to make a config env
+	// prepared to make a config env
 	port := 8090
 	basePath := "/"
 	appVersion := "0.1.0"

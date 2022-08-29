@@ -13,4 +13,10 @@ info:
 paths: {}
 schemes:
 - http
+securityDefinitions:
+  ApiKeyAuth:
+    description: the token is used to authenticate and authorize an user
+    in: header
+    name: Authorization
+    type: apiKey
 swagger: "2.0"
