@@ -3,7 +3,7 @@ package food
 import "time"
 
 //ID represents id of Food type
-type ID = *int64
+type ID = uint64
 
 // Food represents food model
 type Food struct {

@@ -1,31 +1,57 @@
 package memory
 
-import "github.com/brewerywiwis/food-review-backend/pkg/domain/food"
+import (
+	"fmt"
+	"time"
 
+	"github.com/brewerywiwis/food-review-backend/pkg/domain/food"
+)
+
+// Food is alias name for food.Food
+type Food = food.Food
+
+// ID is alias name for food.ID
+type ID = food.ID
+
+// FoodStorage is represent the infrastructure of food storage
 type FoodStorage struct {
-	foodID *int64
-	foods  []food.Food
+	foods []Food
 }
 
-func (s *FoodStorage) GetAll() []food.Food {
+// GetAll is used to retrieve all food in the memory db
+func (s *FoodStorage) GetAll() []Food {
 	return s.foods
 }
 
-func (s *FoodStorage) GetByID(id string) food.Food {
-	return food.Food{}
+// GetByID is used to retrieve a food by ID in the memory db
+func (s *FoodStorage) GetByID(id ID) Food {
+	return Food{}
 }
-func (s *FoodStorage) GetByName(name string) food.Food {
-	return food.Food{}
+
+// GetByName is used to retrieve a food by name in the memory db
+func (s *FoodStorage) GetByName(name string) Food {
+	return Food{}
 }
-func (s *FoodStorage) Create(food food.Food) (food.Food, error) {
-	food.ID = s.foodID
-	*s.foodID++
+
+// Create is used to add a new food record to the memory db
+func (s *FoodStorage) Create(food Food) (Food, error) {
+	fmt.Println(food)
+	if len(s.foods) <= 0 {
+		food.ID = 1
+	} else {
+		food.ID = s.foods[len(s.foods)-1].ID + 1
+	}
+	food.CreatedAt = time.Now()
 	s.foods = append(s.foods, food)
 	return food, nil
 }
-func (s *FoodStorage) Update(food food.Food) (food.Food, error) {
+
+// Update is used to update a food record
+func (s *FoodStorage) Update(food Food) (Food, error) {
 	return food, nil
 }
-func (s *FoodStorage) Delete(food food.Food) error {
+
+// Delete is used to delete a food record
+func (s *FoodStorage) Delete(food Food) error {
 	return nil
 }

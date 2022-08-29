@@ -31,9 +31,9 @@ func (s *service) AddFood(food ...Food) error {
 }
 
 func (s *service) UpdateFood(food Food) error {
-	if food.ID == nil {
+	// if food.ID == nil {
 
-	}
+	// }
 	return nil
 }
 func (s *service) DeleteFood(id ID) error {
