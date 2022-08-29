@@ -19,7 +19,7 @@ func (c *foodController) listAllFood(ctx *gin.Context) {
 func (c *foodController) createFood(ctx *gin.Context) {
 	req := CreateFoodRequest{}
 	if err := ctx.BindJSON(&req); err != nil {
-		ctx.JSON(400, ErrorResponse{"body invalidated"})
+		ctx.JSON(400, NewErrorResponse(0))
 	}
 	food := food.Food{
 		Name:        req.Name,
@@ -30,7 +30,7 @@ func (c *foodController) createFood(ctx *gin.Context) {
 		CreatedAt:   time.Now(),
 	}
 	if err := c.service.AddFood(food); err != nil {
-		ctx.JSON(400, ErrorResponse{"cannot create food"})
+		ctx.JSON(400, NewErrorResponse(0))
 	}
 	response := CreateFoodResponse{"success"}
 	ctx.JSON(200, response)

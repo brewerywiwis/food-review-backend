@@ -2,9 +2,12 @@ package food
 
 import "time"
 
+//ID represents id of Food type
+type ID = *int64
+
 // Food represents food model
 type Food struct {
-	ID          int64     `json:"id"`
+	ID          ID        `json:"id"`
 	Name        string    `json:"name"`
 	Description string    `json:"description"`
 	Img         string    `json:"img"`

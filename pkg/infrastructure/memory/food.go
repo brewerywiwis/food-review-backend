@@ -3,7 +3,7 @@ package memory
 import "github.com/brewerywiwis/food-review-backend/pkg/domain/food"
 
 type FoodStorage struct {
-	foodID int64
+	foodID *int64
 	foods  []food.Food
 }
 
@@ -19,7 +19,7 @@ func (s *FoodStorage) GetByName(name string) food.Food {
 }
 func (s *FoodStorage) Create(food food.Food) (food.Food, error) {
 	food.ID = s.foodID
-	s.foodID++
+	*s.foodID++
 	s.foods = append(s.foods, food)
 	return food, nil
 }
